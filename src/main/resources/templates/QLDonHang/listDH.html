@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <title>THỐNG KÊ DANH SÁCH ĐƠN HÀNG</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-6">
+    <h1 style="text-align: center;">QUẢN LÝ ĐƠN HÀNG</h1>
+    <div style="clear: both; display: block; height: 10px"></div>
+    <div style="clear: both; display: block; height: 10px"></div>
+    <table class="table table-active table-primary">
+        <tr class="table-dark">
+            <th>Mã Đơn Hàng</th>
+            <th>Khách Gửi</th>
+            <th>Người Nhận</th>
+            <th>Email Nhận</th>
+            <th>Phone</th>
+            <th>Địa chỉ </th>
+            <th>Tổng Tiền</th>
+            <th>Ghi Chú</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Trạng Thái</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="dh : ${listDH}">
+            <td th:text="${dh.id}"></td>
+            <td th:text="${dh.name}"></td>
+            <td th:text="${dh.customerName}"></td>
+            <td th:text="${dh.customerEmail}"></td>
+            <td th:text="${dh.customerPhone}"></td>
+            <td th:text="${dh.customerAddress}"></td>
+            <td th:text="${dh.amount}"></td>
+            <td th:text="${dh.message}"></td>
+            <td th:text="${#dates.format(dh.created, 'dd-MM-yyyy HH:mm:ss')}"></td>
+            <td th:text="${#dates.format(dh.updated, 'dd-MM-yyyy HH:mm:ss')}"></td>
+
+            <td th:text="${dh.status} ? 'Hoàn Thành' : 'Đang Giao'"></td>
+
+            <td>
+                <a th:href="@{/viewDH?id={id}(id=${dh.id})}" class="btn btn-primary">Xem Chi Tiết</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
